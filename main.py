@@ -5,10 +5,9 @@ from os import environ
 
 app = Flask(__name__)
 
-@app.route('/catBot', methods=['POST'])
+@app.route(environ['BOT_ROUTE'], methods=['POST'])
 def bot():
     pass
-
 
 if __name__ in "__main__":
     app.run(host='0.0.0.0',port=environ['PORT'],debug=False)
