@@ -13,13 +13,19 @@ def bot():
     if not data or 'type' not in data:
         return 'not ok'
 
-    elif data['type'] == 'message_new':
-        message = data['object']['message']
-        if message['text'] == 'Начать':
-            bs.messages.send(message="Используй клавиатуру!",random_id=get_random_id(),user_id=message['from_id'],keyboard=startKeyboard())
+    if data['secret'] == environ['SECRET']:
+        if data['type'] == 'confirmation':
+            return environ['CONFIRM_TOKEN']
 
-        elif message['text'] == "Хочу кота":
-            bs.messages.send(message="Лови кота!",random_id=get_random_id(),user_id=message['from_id'],keyboard=startKeyboard(),attachment=cat.getRandomCat(bs))
+        if data['type'] == 'message_new':
+            message = data['object']['message']
+            if message['text'] == 'Начать':
+                bs.messages.send(message="Используй клавиатуру!",random_id=get_random_id(),user_id=message['from_id'],keyboard=startKeyboard())
+
+            elif message['text'] == "Хочу кота":
+                bs.messages.send(message="Лови кота!",random_id=get_random_id(),user_id=message['from_id'],keyboard=startKeyboard(),attachment=cat.getRandomCat(bs))
+
+    return 'ok'
 
 if __name__ in "__main__":
     BotSession = VkApi(token=environ['VK_API_KEY'])
