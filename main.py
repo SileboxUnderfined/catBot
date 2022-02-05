@@ -20,10 +20,10 @@ def bot():
     if not data or 'type' not in data:
         return 'not ok'
 
-    if data['secret'] == environ['SECRET']:
-        if data['type'] == 'confirmation':
-            return environ['CONFIRM_TOKEN']
+    if data['type'] == 'confirmation':
+        return environ['CONFIRM_TOKEN']
 
+    if data['secret'] == environ['SECRET']:
         if data['type'] == 'message_new':
             message = data['object']['message']
             if message['text'] == 'Начать':
