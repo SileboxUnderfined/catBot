@@ -7,6 +7,13 @@ from cat import Cat
 
 app = Flask(__name__)
 
+@app.route('/',methods=['POST','GET'])
+def index():
+    if request.method == 'POST':
+        return "kek"
+
+    return 'Котобот стартовая страница'
+
 @app.route(environ['BOT_ROUTE'], methods=['POST'])
 def bot():
     data = request.get_json(force=True,silent=True)
