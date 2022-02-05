@@ -7,6 +7,10 @@ class Cat:
         imgarr = requests.get("https://api.thecatapi.com/v1/images/search")
         img = imgarr.json()[0]['url']
         imgreq = requests.get(img)
+        from os import mkdir
+        from os.path import exists
+        if exists('tempImages') == False:
+            mkdir('tempImages')
         f = open(f'tempImages/{randint(1,100000)}.jpg','wb')
         f.write(imgreq.content)
         return f
