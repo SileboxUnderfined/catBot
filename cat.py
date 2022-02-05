@@ -11,9 +11,12 @@ class Cat:
         from os.path import exists
         if exists('tempImages') == False:
             mkdir('tempImages')
-        f = open(f'tempImages/{randint(1,100000)}.jpg','wb')
+
+        path = f'tempImages/{randint(1,1000000)}.jpg'
+        f = open(path,'wb')
         f.write(imgreq.content)
-        return f
+        f.close()
+        return path
 
     @staticmethod
     def removeTempImages():

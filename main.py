@@ -36,7 +36,6 @@ def bot():
                 photoProps = photo[0]
                 attachment = f'photo_{photoProps["owner_id"]}_{photoProps["photo_id"]}_{photoProps["access_key"]}'
                 bs.messages.send(message="Лови кота!",random_id=get_random_id(),user_id=message['from_id'],keyboard=startKeyboard(),attachment=attachment)
-                f.close()
                 cat.removeTempImages()
 
     return 'ok'
